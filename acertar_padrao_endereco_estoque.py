@@ -1,8 +1,8 @@
 import re
 
-""" Código feito para rodar no Python-Exel """
+""" Código feito para rodar no Python-Excel """
 endereco = "01-01-B"
-endereco = xl("K2") # Célula do Exel
+endereco = xl("K2") # Célula do Excel
 #
 #
 #
