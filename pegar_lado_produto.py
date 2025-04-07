@@ -7,10 +7,10 @@ nome_anuncio = xl("B2") # Célula do Excel
 #
 def definir_posicao():
     lista_posicoes = {
-        " dir ": "Direito",
-        " esq ": "Esquerdo",
         "esq dir": "Esquerdo/Direito",
-        "dir esq": "Esquerdo/Direito"
+        "dir esq": "Esquerdo/Direito",
+        " dir ": "Direito",
+        " esq ": "Esquerdo"
     }
     
     for l in lista_posicoes.keys():
