@@ -33,7 +33,7 @@ Function deixar_nome_ate_60_caracteres(Nome_produto As String, Codigo_produto As
         If Len(nomeNovo) > 60 Then
             nomeNovo = Replace(nomeNovo, Marca, "")
             nomeNovo = Trim(Replace(nomeNovo, "  ", " "))
-            
+             
             If Len(nomeNovo) > 60 Then
                 Dim palavra As Variant
                 For Each palavra In palavrasParaSubstituir.Keys
