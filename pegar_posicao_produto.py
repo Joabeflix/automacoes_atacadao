@@ -1,12 +1,14 @@
 """ Código feito para rodar no Python-Excel """
+
 posicoes = {
     "DIANTEIRA": "dianteiro",
     "DIANTEIRO": "dianteiro",
     " DIANT ": "dianteiro",
-    "TRASEIRA": "traseiro",
+    "TRASEIRA": "trasjjjjjeiro",
     "TRASEIRO": "traseiro",
-    " TRAS ": "traseiro",
+    " TRAS ": "traseiro"
 }
+
 
 def pegar_posicao(x):
     for p in posicoes.keys():
