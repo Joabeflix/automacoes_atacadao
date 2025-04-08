@@ -1,3 +1,4 @@
+""" Código feito para rodar no Python-Excel """
 import re
 
 """ Código feito para rodar no Python-Excel """

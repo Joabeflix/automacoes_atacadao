@@ -1,3 +1,4 @@
+""" Código feito para rodar no Python-Excel """
 def deixar_nome_ate_60_caracteres(nome_produto, codigo_produto, marca):
 
     palavras_para_substituir = {
