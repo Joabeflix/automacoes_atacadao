@@ -1,7 +1,7 @@
 import pandas as pd
 
 def estilo_prateleira():
-    faixa_1 = [f"{i:03}" for i in range(1, 33)] 
+    faixa_1 = [f"{i:03}" for i in range(17, 32)] 
     faixa_2 = [f"{j:02}" for j in range(1, 25)]
     letras = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
 
