@@ -1,13 +1,13 @@
 import pandas as pd
 import time
 
-exel_lista_veiculos = pd.read_excel(r"C:\Users\joab.alves\Desktop\plan_lista_linhas.xlsx", sheet_name='a')
-exel_alterar = pd.read_excel(r"C:\Users\joab.alves\Desktop\plan_lista_linhas.xlsx", sheet_name='b')
+exel_lista_veiculos = pd.read_excel(r"definir_linha_leve_pesada\plan_lista_linhas.xlsx", sheet_name='a')
+exel_alterar = pd.read_excel(r"definir_linha_leve_pesada\plan_lista_linhas.xlsx", sheet_name='b')
 
 
 
 lista_de_veiculos = [v[0] for v in exel_lista_veiculos.values.tolist()]
-lista_nomes_anuncios = exel_alterar['nome']
+lista_nomes_anuncios = exel_alterar['aplic']
 
 
 
@@ -32,7 +32,7 @@ def main():
         lista_final.append(verificadora(lista_de_veiculos, nome))        
     
     exel_alterar['Linha'] = lista_final
-    slv = exel_alterar.to_excel('Amortecedores linha pesada.xlsx', index=False)
+    slv = exel_alterar.to_excel('Anúncios Linha Pesada.xlsx', index=False)
 
 
 main()
