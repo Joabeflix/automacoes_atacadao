@@ -1,18 +1,36 @@
 import pandas as pd
-
-planilha = pd.read_excel('Anúncios Linha Pesada.xlsx')
-
-coluna_aplicacao = planilha['aplic']
-
-retorno = []
-
-for nome in coluna_aplicacao: 
-    retorno.append(str(nome).strip())
+import requests
 
 
-planilha['aplicacao acertada'] = retorno
 
-planilha.to_excel('Anuncios_linha_pesada.xlsx', index=False)
+local_planilha = 'links_produtos.xlsx'
+
+planilha = pd.read_excel(local_planilha)
+
+links = planilha['Links']
+codigo_produto = planilha['mpn']
+
+lista_erros = []
+
+for link, codigo in zip(links, codigo_produto):
+
+    codigo_ = str(codigo).replace('/', '-')
+    nome_imagem = f'imagens_produtos/{codigo_}.jpg'
+
+
+    resposta = requests.get(link)
+    if resposta.status_code == 200:
+        with open(nome_imagem, 'wb') as imagem:
+            imagem.write(resposta.content)
+        print(f'Imagem do produto {codigo} salva com sucesso!')
+    else:
+        lista_erros.append(codigo)
+    
+
+
+for x in lista_erros:
+    print(x)
+
 
 
 
