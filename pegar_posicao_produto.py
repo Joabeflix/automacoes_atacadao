@@ -4,7 +4,7 @@ posicoes = {
     "DIANTEIRA": "dianteiro",
     "DIANTEIRO": "dianteiro",
     " DIANT ": "dianteiro",
-    "TRASEIRA": "trasjjjjjeiro",
+    "TRASEIRA": "traseiro",
     "TRASEIRO": "traseiro",
     " TRAS ": "traseiro"
 }
