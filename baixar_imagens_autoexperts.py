@@ -1,92 +1,85 @@
-import requests
+import tkinter as tk
+from tkinter import filedialog, messagebox
 import pandas as pd
+import requests
 import os
 
-from tkinter import *
-from tkinter import filedialog
+CLIENT_KEY = '222bee82-0b5f-4ec9-bc20-0e09389c2f05'
+CLIENT_SECRET = 'f3cbf1bd243e645d44583189af45c08e'
 
-# Função para obter o token de acesso
-def get_access_token(client_key, client_secret):
+def gerar_token():
     token_url = 'https://api.intelliauto.com.br/v1/login'
-    token_payload = {
-        'clientKey': client_key,
-        'clientSecret': client_secret
-    }
-    token_response = requests.post(token_url, json=token_payload)
-    if token_response.status_code == 200:
-        return token_response.json().get('accessToken')
-    return None
+    payload = {'clientKey': CLIENT_KEY, 'clientSecret': CLIENT_SECRET}
+    response = requests.post(token_url, json=payload)
+    if response.status_code == 200:
+        return response.json().get('accessToken')
+    else:
+        raise Exception("Erro ao obter token")
 
-# Função para baixar e salvar a imagem dado o partNumber
-def download_image(part_number, access_token, output_dir):
+
+def baixar_imagem(part_number, token, pasta_destino='imagens'):
     url = f'https://api.intelliauto.com.br/v1/produtos/partnumber/{part_number}'
-    headers = {'accept': 'application/json', 'Authorization': f'Bearer {access_token}'}
-    
+    headers = {'accept': 'application/json', 'Authorization': f'Bearer {token}'}
     response = requests.get(url, headers=headers)
+
+    if response.status_code == 401:
+        raise Exception("Token expirado ou inválido")
+
     if response.status_code == 200:
         data = response.json()
-        if 'data' in data and data['data']:
-            imagens = data['data'][0].get('imagens')
-            if imagens:
-                image_url = imagens[0]['url']
-                image_filename = os.path.join(output_dir, f'{part_number}.jpg')
-                with open(image_filename, 'wb') as f:
-                    f.write(requests.get(image_url).content)
-                return image_filename
-    return None
-
-# Função para lidar com o botão de seleção de arquivo
-def select_file():
-    global file_path_entry
-    file_path = filedialog.askopenfilename(filetypes=[("Excel files", "*.xlsx")])
-    file_path_entry.delete(0, END)
-    file_path_entry.insert(0, file_path)
-
-# Função para executar o processo
-def execute_process():
-    # Obter os valores dos tokens e local do arquivo da interface
-    client_key = client_key_entry.get()
-    client_secret = client_secret_entry.get()
-    file_path = file_path_entry.get()
-
-    # Obter token de acesso
-    access_token = get_access_token(client_key, client_secret)
-
-    if access_token:
-        # Ler o arquivo Excel com os códigos de peças
-        df = pd.read_excel(file_path)
-
-        # Criar um diretório para salvar as imagens na área de trabalho
-        desktop_path = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop')
-        output_dir = os.path.join(desktop_path, 'imagens_autoparts')
-        os.makedirs(output_dir, exist_ok=True)
-
-        # Baixar e salvar as imagens
-        df['Imagem'] = df['partNumber'].apply(lambda x: download_image(x, access_token, output_dir))
-
-        print("Imagens baixadas e salvas em:", output_dir)
+        imagens = data.get('data', [{}])[0].get('imagens', [])
+        if imagens:
+            url_imagem = imagens[0].get('url')
+            if url_imagem:
+                img_response = requests.get(url_imagem)
+                if img_response.status_code == 200:
+                    os.makedirs(pasta_destino, exist_ok=True)
+                    caminho_arquivo = os.path.join(pasta_destino, f'{part_number}.jpg')
+                    with open(caminho_arquivo, 'wb') as f:
+                        f.write(img_response.content)
+                    print(f'Imagem salva: {caminho_arquivo}')
+                else:
+                    print(f'Erro ao baixar imagem de {part_number}')
+            else:
+                print(f'Nenhuma URL de imagem para {part_number}')
+        else:
+            print(f'Sem imagens para {part_number}')
     else:
-        print("Falha ao obter token de acesso.")
+        print(f'Erro na requisição do produto {part_number}')
 
-# Criar a interface
-root = Tk()
+
+def selecionar_arquivo():
+    caminho_arquivo = filedialog.askopenfilename(filetypes=[("Planilhas Excel", "*.xlsx")])
+    if not caminho_arquivo:
+        return
+
+    try:
+        df = pd.read_excel(caminho_arquivo)
+        if 'codigo' not in df.columns:
+            messagebox.showerror("Erro", "A coluna 'codigo' não foi encontrada.")
+            return
+
+        lista_codigos = df['codigo'].dropna().astype(str).tolist()
+        token = gerar_token()
+
+        for cod in lista_codigos:
+            baixar_imagem(cod, token)
+
+        messagebox.showinfo("Concluído", "Download das imagens finalizado.")
+
+    except Exception as e:
+        messagebox.showerror("Erro", str(e))
+
+
+# Interface gráfica
+root = tk.Tk()
 root.title("Baixar Imagens de Produtos")
+root.geometry("400x150")
 
-# Rótulos e campos de entrada para os tokens e o local do arquivo
-Label(root, text="Client Key:").grid(row=0, column=0, sticky=W)
-client_key_entry = Entry(root)
-client_key_entry.grid(row=0, column=1, padx=5, pady=5)
+label = tk.Label(root, text="Selecione a planilha com a coluna 'codigo':")
+label.pack(pady=10)
 
-Label(root, text="Client Secret:").grid(row=1, column=0, sticky=W)
-client_secret_entry = Entry(root)
-client_secret_entry.grid(row=1, column=1, padx=5, pady=5)
-
-Label(root, text="Local da Planilha:").grid(row=2, column=0, sticky=W)
-file_path_entry = Entry(root)
-file_path_entry.grid(row=2, column=1, padx=5, pady=5)
-
-Button(root, text="Selecionar Arquivo", command=select_file).grid(row=2, column=2, padx=5, pady=5)
-
-Button(root, text="Executar", command=execute_process).grid(row=3, columnspan=2, pady=10)
+botao = tk.Button(root, text="Selecionar Arquivo Excel", command=selecionar_arquivo)
+botao.pack(pady=10)
 
 root.mainloop()
