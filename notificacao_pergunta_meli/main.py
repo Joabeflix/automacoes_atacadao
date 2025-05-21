@@ -13,9 +13,8 @@ pygame.mixer.init()
 
 # Mapeia os áudios com base no número sorteado
 audios = {
-    1: "joabe.mp3",
-    2: "keyton.mp3",
-    3: "caio.mp3"
+    1: "joabe-caio.mp3",
+    2: "keyton-caio.mp3"
 }
 
 driver = webdriver.Chrome()
@@ -54,31 +53,24 @@ while True:
 
         elementos = driver.find_elements(By.CLASS_NAME, "andes-card__content")
 
-        print("==== Conteúdo capturado ====")
         for el in elementos:
             texto = el.text.strip()
             if texto:
                 lista_dados.append(texto)
-                print(texto)
-        print("============================\n")
         
     except Exception as e:
         print("Erro ao capturar o texto:", str(e))
 
     if 'Não há perguntas a responder.' not in lista_dados:
 
-        winsound.Beep(500, 100)
-        winsound.Beep(1000, 50)
-        winsound.Beep(500, 100)
-        winsound.Beep(1000, 50)
-        winsound.Beep(500, 100)
-        winsound.Beep(1000, 50)
-        winsound.Beep(500, 100)
-        winsound.Beep(1000, 50)
-        winsound.Beep(500, 100)
-        winsound.Beep(1000, 50)
+        for v in range(12):
+            winsound.Beep(500, 200)
+            winsound.Beep(1000, 100)
+            winsound.Beep(2000, 50)
 
-        numero = random.randint(1, 3)
+        time.sleep(1.5)
+        """"""
+        numero = random.randint(1, 2)
         audio_sorteado = audios[numero]
         print(f"[INFO] Nova pergunta detectada — tocando áudio {numero}: {audio_sorteado}")
         
@@ -89,4 +81,6 @@ while True:
         while pygame.mixer.music.get_busy():
             time.sleep(1)
 
-    time.sleep(200)
+    for x in range(200):
+        print(x)
+        time.sleep(1)
