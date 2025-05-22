@@ -30,17 +30,14 @@ for cookie in cookies:
 
 driver.get("https://www.mercadolivre.com.br/resumo#menu-user")
 
-# Aguarda a página carregar
 time.sleep(5)
 
-# Obtém tamanho da tela (resolução)
 largura, altura = pyautogui.size()
 
 # Define a posição no canto direito, meio vertical
 x = largura - 100     # 10px da borda direita
 y = altura // 2      # Meio da altura
 
-# Move o mouse e clica
 pyautogui.click(x, y)
 
 time.sleep(5)
@@ -60,6 +57,9 @@ while True:
         
     except Exception as e:
         print("Erro ao capturar o texto:", str(e))
+
+    if 'Não foi possível mostrar as perguntas.' in lista_dados:
+        continue
 
     if 'Não há perguntas a responder.' not in lista_dados:
 
