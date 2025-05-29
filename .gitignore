@@ -2,3 +2,4 @@
 *.png
 *.webp
 /venv/
+__pycache__
