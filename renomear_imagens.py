@@ -1,6 +1,7 @@
 import os
 
-caminho = r'C:\Users\joab.alves\Desktop\imagens cobreq\img3'
+caminho = r'C:\Users\joab.alves\Desktop\TRW IMG\img3'
+
 
 
 os.chdir(caminho)
