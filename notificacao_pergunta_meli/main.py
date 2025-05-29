@@ -13,8 +13,8 @@ pygame.mixer.init()
 
 # Mapeia os áudios com base no número sorteado
 audios = {
-    1: "joabe-caio.mp3",
-    2: "keyton-caio.mp3"
+    1: r"notificacao_pergunta_meli\joabe-caio.mp3",
+    2: r"notificacao_pergunta_meli\keyton-caio.mp3"
 }
 
 driver = webdriver.Chrome()
@@ -22,7 +22,7 @@ driver = webdriver.Chrome()
 driver.get("https://www.mercadolivre.com.br/")
 time.sleep(3)
 
-with open("cookies.pkl", "rb") as f:
+with open(r"notificacao_pergunta_meli\cookies.pkl", "rb") as f:
     cookies = pickle.load(f)
 
 for cookie in cookies:
