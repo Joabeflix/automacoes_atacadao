@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?><XnView_script version="1.0" name="colocar foto caixa">
+    <Automatic_crop method="1" position="0" color="#ffffff" tolerance="50" direction="15"/>
+    <Resize mode="1" width="1100" height="0" unit="0" ratio="true" orientation="false" enlarge="0" resample="7" gamma_correct="false"/>
+    <Canvas_resize mode="0" width="800" height="600" width2="100" height2="110" width3="1" height3="1" unit="1" relative="false" ratio="true" orientation="false" color="#ffffff" colorFlag="false" colorAt="0" alpha="255" position="0"/>
+    <Canvas_resize mode="0" width="2000" height="2000" width2="100" height2="100" width3="1" height3="1" unit="0" relative="false" ratio="true" orientation="false" color="#ffffff" colorFlag="false" colorAt="0" alpha="255" position="7"/>
+    <Watermark filename="C:/Users/joab.alves/Downloads/caixa suporte rei.jpg" opacity="100" no_alpha="false" position="1" delta_x="0" delta_y="0" perc="52" size="3"/>
+    <Automatic_crop method="1" position="0" color="#ffffff" tolerance="0" direction="15"/>
+    <Canvas_resize mode="0" width="2200" height="2200" width2="100" height2="100" width3="1" height3="1" unit="0" relative="false" ratio="true" orientation="false" color="#ffffff" colorFlag="false" colorAt="0" alpha="255" position="4"/>
+    <Output folder="" filename="{Filename}" case="0" startIndex="1" format="JPEG">
+        <Options overwrite="1" orgDate="false" keepMeta="true" keepICC="false" keepFolder="false" keepParentFolder="false" keepExtension="false" delOrg="true" multipage="false" allPages="false" openExplorer="false" beep="true" openBrowser="false" clearItems="false"/>
+        <JPEG quality="100" progressive="false" optimizeHuffman="false" rebuildThumb="true" orgQuality="false" DCTMethod="0" subSampling="0" smoothFactor="0"/>
+    </Output>
+</XnView_script>

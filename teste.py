@@ -1,8 +1,5 @@
-import os
+nota = '32250652587848000243550570000005571823952240'
 
-caminho = r'C:\Users\joab.alves\Desktop\imagens cadastro linha pesada\Img2\outros'
 
-os.chdir(caminho)
-for x in os.listdir():
-    os.rename(rf'{caminho}\{x}', rf'{caminho}\{x.replace('.jpg', '')}-2.jpg')
-    print(x)
+for x, y in enumerate(nota):
+    print(x, y)
