@@ -1,7 +1,7 @@
 import pandas as pd
 from utils.utils import texto_no_console
 
-class TratamentoPlanilha:
+class TratamentoPlanilhaPedidosNf:
     def __init__(self, local_planilha, nome_aba_pedido, nome_aba_nf):
         self.local_planilha = local_planilha
         self.nome_aba_pedido = nome_aba_pedido
@@ -39,10 +39,16 @@ class TratamentoPlanilha:
 
     def _acertar_nota(self, obj):
         return obj
+    
+
+
+
+
+
 
 
 if __name__ == '__main__':
-    app = TratamentoPlanilha(
+    app = TratamentoPlanilhaPedidosNf(
         local_planilha='despachar_pedidos\pedidos_x_notas.xlsx',
         nome_aba_pedido='Pedido',
         nome_aba_nf='Nota'

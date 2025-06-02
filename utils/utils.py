@@ -32,8 +32,7 @@ def tela_aviso(titulo, mensagem, tipo):
         "erro": messagebox.showerror
     }
     if tipo in tipos.keys():
-        texto_no_console('oi')
-        return tipos.get(tipo)(title=titulo, message=mensagem) and texto_no_console('teste')
+        return tipos.get(tipo)(title=titulo, message=mensagem)
     texto_no_console([
         f'Tipo de tela não cadastrado na função: {tipo}', 
         f'Tipos cadastrados: {list(tipos.keys())}'])
@@ -44,5 +43,5 @@ def converter_int64_para_int(obj):
         return int(obj)
     return obj
 
-def limpar_prompt(self, event=None):
+def limpar_prompt():
     os.system('cls')
