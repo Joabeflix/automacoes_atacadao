@@ -5,8 +5,15 @@ from tkinter import messagebox
 import re
 
 def texto_no_console(obj):
+    separadores = ['_', '*', '-', '#']
+    if obj in separadores:
+        print(obj * 30)
+        return None
     if isinstance(obj, list):
         for t in obj:
+            if t == '\n':
+                print('\n')
+                continue
             print(f'>>> {t}{'\n'}')
         return None
     print(f'>>> {obj}{'\n'}')
