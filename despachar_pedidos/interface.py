@@ -1,16 +1,17 @@
 import pandas as pd
 import tkinter as tk
 from utils.utils import tela_aviso, limpar_prompt
-from despachar_pedidos.tratamento_planilha import TratamentoPlanilhaPedidosNf
+from despachar_pedidos.tratamento_planilha_nfs import TratamentoPlanilhaPedidosNf
 import ttkbootstrap as ttk
 from ttkbootstrap.constants import *
 from tkinter import StringVar
 
 dicionario_notas = TratamentoPlanilhaPedidosNf(
-    local_planilha=r'despachar_pedidos\pedidos_x_notas.xlsx',
-    nome_aba_pedido='Pedido',
-    nome_aba_nf='Nota'
-).retorno_dicionario()
+        caminho_arquivo='despachar_pedidos/pedidos_x_notas.xlsx',
+        aba_pedido='Pedido',
+        aba_nf='Nota'
+    )
+dicionario_notas = dicionario_notas.get_dicionario()
 
 def remover_zero_esquerda(obj):
     if not obj:

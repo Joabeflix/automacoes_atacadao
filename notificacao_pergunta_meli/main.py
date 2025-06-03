@@ -8,10 +8,8 @@ import pyautogui
 import winsound
 
 
-# Inicializa o mixer de áudio
 pygame.mixer.init()
 
-# Mapeia os áudios com base no número sorteado
 audios = {
     1: r"notificacao_pergunta_meli\joabe-caio.mp3",
     2: r"notificacao_pergunta_meli\keyton-caio.mp3"
@@ -34,9 +32,8 @@ time.sleep(5)
 
 largura, altura = pyautogui.size()
 
-# Define a posição no canto direito, meio vertical
-x = largura - 100     # 10px da borda direita
-y = altura // 2      # Meio da altura
+x = largura - 100
+y = altura // 2 
 
 pyautogui.click(x, y)
 
@@ -76,8 +73,7 @@ while True:
         
         pygame.mixer.music.load(audio_sorteado)
         pygame.mixer.music.play()
-
-        # Espera o áudio terminar
+        
         while pygame.mixer.music.get_busy():
             time.sleep(1)
 
