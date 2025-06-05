@@ -1,6 +1,6 @@
 import os
 
-caminho = r'C:\Users\joab.alves\Desktop\TRW IMG\img3'
+caminho = r'C:\Users\joab.alves\Desktop\IMG\IMG 3'
 
 
 
