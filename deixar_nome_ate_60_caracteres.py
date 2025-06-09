@@ -12,7 +12,7 @@ def deixar_nome_ate_60_caracteres(nome_produto, codigo_produto, marca):
         "ESQUERDO": "ESQ",
         "ESQ DIR": "",
         "DIR ESQ": "",
-        "  ": " ",
+        "  ": " "
     }
 
     def acertar_nomes(x):
