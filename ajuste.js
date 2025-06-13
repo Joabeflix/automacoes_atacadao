@@ -1,4 +1,31 @@
-""" Código feito para rodar no Python-Excel """
+function main(workbook: ExcelScript.Workbook) {
+  let selectedSheet = workbook.getActiveWorksheet();
+  selectedSheet.getRange("C:C").insert(ExcelScript.InsertShiftDirection.right);
+  selectedSheet.getRange("C1").setValue("posição");
+  selectedSheet.getRange("D:D").insert(ExcelScript.InsertShiftDirection.right);
+  selectedSheet.getRange("D1").setValue("nome padrao");
+  selectedSheet.getRange("E:E").insert(ExcelScript.InsertShiftDirection.right);
+  selectedSheet.getRange("E1").setValue("veiculo");
+  selectedSheet.getRange("I1").setValue("nome anuncio");
+  selectedSheet.getRange("J1").setValue("nome ate 60");
+  selectedSheet.getRange("K1").setValue("Descrição");
+  selectedSheet.getRange("L1").setValue("Link Img");
+
+  // Configuração do nome do anúncio
+  selectedSheet.getRange("I2").setFormulaLocal('=SE(A2=0;"";PRI.MAIÚSCULA(ARRUMAR(D2&" Compativel "&E2&" "&C2&" "&H2&" "&G2)))');
+
+
+  // Configuração do link das imagens
+  // Exemplo de link: https://samarcmkt.s3.us-east-2.amazonaws.com/IMG/0002KE-2.jpg
+  // O padrão vai ser === Se o código do produto deveria
+  // '=SE(A2=0;"";"https://samarcmkt.s3.us-east-2.amazonaws.com/IMG/"&L2&".jpg"'
+
+  const formulaImagem = `=SE(A2=0;"";"https://samarcmkt.s3.us-east-2.amazonaws.com/IMG/" & H2 & "-" & SUBSTITUIR(G2; "/"; "-") & ".jpg, https://samarcmkt.s3.us-east-2.amazonaws.com/IMG/" & H2 & "-" & SUBSTITUIR(G2; "/"; "-") & "-2.jpg, https://samarcmkt.s3.us-east-2.amazonaws.com/IMG/" & H2 & "-" & SUBSTITUIR(G2; "/"; "-") & "-3.jpg")`;
+
+  selectedSheet.getRange("L2").setFormulaLocal(formulaImagem);
+
+
+  const codigo_py_nome_ate_60 = `
 def deixar_nome_ate_60_caracteres(nome_produto, codigo_produto, marca):
 
     palavras_para_substituir = {
@@ -60,4 +87,8 @@ marca = xl("H2")
 modelo = xl("G2")
 
 deixar_nome_ate_60_caracteres(nome_produto=nome, marca=marca, codigo_produto=modelo)
+`
 
+
+  selectedSheet.getRange("J2").setValue(`PY(${codigo_py_nome_ate_60})`);
+}
