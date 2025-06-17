@@ -1,5 +1,20 @@
-nota = '32250652587848000243550570000005571823952240'
+import pandas as pd
 
 
-for x, y in enumerate(nota):
-    print(x, y)
+planilha = pd.read_excel('x.xlsx', sheet_name='dados')
+
+coluna_alterar = planilha['nome padrao']
+
+
+lista_nova = []
+for x in coluna_alterar:
+    lista_nova.append(x[::-1])
+
+
+planilha['coluna_nova'] = lista_nova
+
+
+planilha.to_excel('planilhja.xlsx')
+
+
+
