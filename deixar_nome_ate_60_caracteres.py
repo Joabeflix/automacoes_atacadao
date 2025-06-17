@@ -1,4 +1,3 @@
-""" Código feito para rodar no Python-Excel """
 def deixar_nome_ate_60_caracteres(nome_produto, codigo_produto, marca):
 
     palavras_para_substituir = {
@@ -12,6 +11,7 @@ def deixar_nome_ate_60_caracteres(nome_produto, codigo_produto, marca):
         "ESQUERDO": "ESQ",
         "ESQ DIR": "",
         "DIR ESQ": "",
+        "Esquerdo/Direito": "Esq/Dir",
         "  ": " "
     }
 
@@ -53,11 +53,26 @@ def deixar_nome_ate_60_caracteres(nome_produto, codigo_produto, marca):
         nome_novo = nome_novo.replace(palavra, palavras_para_substituir.get(palavra))
 
     return retorno_final(nome_novo)
-    
 
-nome = xl("I2")
-marca = xl("H2")
-modelo = xl("G2")
 
-deixar_nome_ate_60_caracteres(nome_produto=nome, marca=marca, codigo_produto=modelo)
+
+def funcao_geral(lista_nome, lista_marca, lista_codigo):
+
+    retorno = []
+
+    for v_nome, v_marca, v_codigo in zip(lista_nome, lista_marca, lista_codigo):
+        data = deixar_nome_ate_60_caracteres(nome_produto=v_nome, codigo_produto=v_codigo, marca=v_marca)
+        if data == 'None':
+            return retorno
+        retorno.append(data)
+
+    return retorno
+
+_lista_nome = [x[0] for x in xl("I2:I1000").values]
+_lista_marca = [x[0] for x in xl("H2:I1000").values]
+_lista_codigo = [x[0] for x in xl("G2:I1000").values]
+
+funcao_geral(lista_nome=_lista_nome, lista_marca=_lista_marca, lista_codigo=_lista_codigo)
+
+
 
