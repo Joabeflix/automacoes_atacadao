@@ -1,20 +1,22 @@
 import pandas as pd
+import os
+
+planilha = pd.read_excel('plan.xlsx')
+coluna_codigos = planilha['mpn']
+
+coluna_nova = []
+
+os.chdir(r'C:\Users\joab.alves\Desktop\img-cad-api')
+fotos = os.listdir()
 
 
-planilha = pd.read_excel('x.xlsx', sheet_name='dados')
+for codigo in coluna_codigos:
+    codigo = f'{codigo}.jpg'
+    if codigo in fotos:
+        coluna_nova.append('OK')
+        continue
+    coluna_nova.append('Não')
 
-coluna_alterar = planilha['nome padrao']
-
-
-lista_nova = []
-for x in coluna_alterar:
-    lista_nova.append(x[::-1])
-
-
-planilha['coluna_nova'] = lista_nova
-
-
-planilha.to_excel('planilhja.xlsx')
-
-
+planilha['Foto'] = coluna_nova
+salvar = planilha.to_excel('verif.xlsx', index=False)
 
