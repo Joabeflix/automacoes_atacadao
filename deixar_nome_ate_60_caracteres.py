@@ -1,4 +1,4 @@
-def deixar_nome_ate_60_caracteres(nome_produto, codigo_produto, marca):
+def deixar_nome_ate_60_caracteres(nome_produto, codigo_produto, marca) -> str:
 
     palavras_para_substituir = {
         "DIANTEIRO": "DIANT",
@@ -56,7 +56,7 @@ def deixar_nome_ate_60_caracteres(nome_produto, codigo_produto, marca):
 
 
 
-def funcao_geral(lista_nome, lista_marca, lista_codigo):
+def funcao_geral(lista_nome, lista_marca, lista_codigo) -> list:
 
     retorno = []
 
