@@ -1,16 +1,60 @@
 import pyautogui
 import os
+import pyperclip
+import time
 
-imagens_salvar_print = ['M025D', 'M026B', 'M029L', 'W905', 'M029J', 'D669', 'W838']
+produtos = [
+    "48627B",
+    "51326B",
+    "48425NA",
+    "71426B",
+    "48353NA",
+    "71127PP",
+    "73027NA",
+    "48430NAFL",
+    "48420CV",
+    "59922FF",
+    "48619NA",
+    "51525B"
+]
 
 os.system('cls')
 print('')
-for img in imagens_salvar_print:
+
+pulados = []
+
+for img in produtos:
     os.system('cls')
-    confirmacao = input(f'Imagem atual: {img} press - [Enter]')
-    screenshot = pyautogui.screenshot(region=(0, 0, 1920, 1080))
+    pyperclip.copy(img)
+    entrada = input(f'Imagem atual: {img} - Pressione [Enter] para ...')
+    if entrada == 'p':
+        pulados.append(img)
+        continue
+
+    
+    
+    print('MOVA O MOUSE PARA A POSIÇÂO SUPERIOR ESQUERDA')
+    time.sleep(2)
+    x1, y1 = pyautogui.position()
+    print(f'X1: {x1}, Y1: {y1}')
+
+    print('MOVA O MOUSE PARA A POSIÇÂO INFERIOR DIREITA')
+    time.sleep(2.2)
+    x2, y2 = pyautogui.position()
+    print(f'X2: {x2}, Y2: {y2}')
+
+    region = (x1, y1, x2 - x1, y2 - y1)
+
+
+    screenshot = pyautogui.screenshot(region=region)
 
     nome_arquivo = f'{img}.jpg'
     screenshot.save(nome_arquivo)
+    print(f'[✓] Imagem salva como {nome_arquivo}')
 
+
+if pulados:
+    print('PULADOS: ')
+    for p in pulados:
+        print(p)
 
