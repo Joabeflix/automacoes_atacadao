@@ -4,13 +4,6 @@ import pyperclip
 import time
 
 produtos = [
-    "48627B",
-    "51326B",
-    "48425NA",
-    "71426B",
-    "48353NA",
-    "71127PP",
-    "73027NA",
     "48430NAFL",
     "48420CV",
     "59922FF",
