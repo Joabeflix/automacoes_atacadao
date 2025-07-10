@@ -69,8 +69,8 @@ def funcao_geral(lista_nome, lista_marca, lista_codigo) -> list:
     return retorno
 
 _lista_nome = [x[0] for x in xl("I2:I1000").values]
-_lista_marca = [x[0] for x in xl("H2:I1000").values]
-_lista_codigo = [x[0] for x in xl("G2:I1000").values]
+_lista_marca = [x[0] for x in xl("H2:H1000").values]
+_lista_codigo = [x[0] for x in xl("G2:G1000").values]
 
 funcao_geral(lista_nome=_lista_nome, lista_marca=_lista_marca, lista_codigo=_lista_codigo)
 

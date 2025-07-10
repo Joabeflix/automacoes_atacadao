@@ -1,11 +1,3 @@
-import pyautogui
-import time
+nums = "IVO"
 
-while True: 
-
-    print(pyautogui.position())
-    time.sleep(0.01)
-
-
-
-
+print(nums[0:1])
