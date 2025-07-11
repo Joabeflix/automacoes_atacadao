@@ -15,13 +15,15 @@ def deixar_nome_ate_60_caracteres(nome_produto, codigo_produto, marca) -> str:
         "  ": " "
     }
 
-    def acertar_nomes(x):
+    def acertar_nomes(x) -> str:
         return str(x).upper().replace("  ", " ")
     
-    def verificar_tamanho(nome):
+    def verificar_tamanho(nome) -> bool:
         return True if len(nome) < 61 else False
     
-    def retorno_final(x):
+
+
+    def retorno_final(x) -> str:
         return x.title().rstrip()
     
     nome_produto = acertar_nomes(nome_produto)

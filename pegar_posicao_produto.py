@@ -10,9 +10,12 @@ posicoes = {
 }
 
 
-def pegar_posicao(x):
+def pegar_posicao(x) -> str:
     for p in posicoes.keys():
         if p not in str(x).upper():
             continue
         return posicoes.get(p)
     return ''
+
+
+
