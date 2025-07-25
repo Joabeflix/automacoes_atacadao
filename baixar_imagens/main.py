@@ -1,8 +1,6 @@
 import requests
 import pandas as pd
 
-
-
 def baixar_imagem(url, local_salvar):
     try:
         resposta = requests.get(url)
@@ -30,9 +28,8 @@ for l, n in zip(lista_links, lista_nomes):
         continue
     lista_erros.append(n)
 
-
-
 if lista_erros:
-    print('Erros:')
+
+    print('\n\n ---------->|ERROS|<----------')
     for err in lista_erros:
-        print(f'---> {err}')
+        print(f'>|{err}|<')
