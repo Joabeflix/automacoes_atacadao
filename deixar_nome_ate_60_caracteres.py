@@ -58,6 +58,7 @@ def deixar_nome_ate_60_caracteres(nome_produto, codigo_produto, marca) -> str:
 
 
 
+
 def funcao_geral(lista_nome, lista_marca, lista_codigo) -> list:
 
     retorno = []

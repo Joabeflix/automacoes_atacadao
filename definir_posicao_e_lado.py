@@ -3,7 +3,7 @@ nome_anuncio = xl("B2")  # Célula do Excel
 
 # Dicionários de busca
 lados_dict = {
-    "esq dir": ["Esquerdo", "Direito"],
+    "esq dir": ["", "Direito"],
     "dir esq": ["Esquerdo", "Direito"],
     " dir ": ["Direito"],
     " esq ": ["Esquerdo"],

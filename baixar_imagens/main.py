@@ -23,7 +23,7 @@ lista_nomes = planilha['nome']
 
 lista_erros = []
 for l, n in zip(lista_links, lista_nomes):
-    local_salvar = f'baixar_imagens/imagens/{n}.jpg'
+    local_salvar = rf'baixar_imagens\imagens\{n}.jpg'
     if baixar_imagem(url=l, local_salvar=local_salvar):
         continue
     lista_erros.append(n)
