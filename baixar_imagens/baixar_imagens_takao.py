@@ -17,36 +17,32 @@ def baixar_imagem(url, local_salvar):
         print(f"Falha ao baixar a imagem de {url}: {e}")
         return False
  
-planilha = pd.read_excel(r'takao.xlsx')
+planilha = pd.read_excel(r'baixar_imagens\takao.xlsx')
 lista_codigos = planilha['codigo']
 
-os.chdir('imagens')
+os.chdir(rf'baixar_imagens\imagens')
 lista_erros = []
-links = [
-    "https://cdn.takao.com.br/images-mult-prod/1000/codigo_produto/0.jpg",
-    "https://cdn.takao.com.br/images-mult-prod/750/codigo_produto/0.jpg",
-    "https://takao.blob.core.windows.net/images-mult-prod/1000/codigo_produto/0.jpg",
-    "https://takao.blob.core.windows.net/images-mult-prod/1000/codigo_produto/0.jpg"
-]
 
 for codigo in lista_codigos:
 
+    links = [
+        f"https://cdn.takao.com.br/images-mult-prod/1000/{codigo}/1.jpg",
+        f"https://cdn.takao.com.br/images-mult-prod/1000/{codigo}/0.jpg",
+        f"https://cdn.takao.com.br/images-mult-prod/750/{codigo}/1.jpg",
+        f"https://cdn.takao.com.br/images-mult-prod/750/{codigo}/0.jpg",
+        f"https://takao.blob.core.windows.net/images-mult-prod/1000/{codigo}/1.jpg",
+        f"https://takao.blob.core.windows.net/images-mult-prod/1000/{codigo}/0.jpg",
+        f"https://takao.blob.core.windows.net/images-mult-prod/750/{codigo}/1.jpg",
+        f"https://takao.blob.core.windows.net/images-mult-prod/750/{codigo}/0.jpg",
+        "break"
+    ]
     local_salvar = rf'{codigo.replace(" ", "")}.jpg'
 
-    url = f'{links[0].replace("codigo_produto", codigo)}'
-    if baixar_imagem(url, local_salvar=local_salvar):
-        continue
-
-    url = f'{links[1].replace("codigo_produto", codigo)}'
-    if baixar_imagem(url, local_salvar=local_salvar):
-        continue
-
-    url = f'{links[2].replace("codigo_produto", codigo)}'
-    if baixar_imagem(url, local_salvar=local_salvar):
-        continue
-
-    url = f'{links[3].replace("codigo_produto", codigo)}'
-    if baixar_imagem(url, local_salvar=local_salvar):
-        continue
-
-    lista_erros.append(codigo)
+    for l in links:
+        if l == "break":
+            lista_erros.append(codigo)
+            
+        if not baixar_imagem(l, local_salvar):
+            continue
+        else:
+            break
