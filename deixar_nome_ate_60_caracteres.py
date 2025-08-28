@@ -77,4 +77,3 @@ _lista_codigo = [x[0] for x in xl("G2:G1000").values]
 
 funcao_geral(lista_nome=_lista_nome, lista_marca=_lista_marca, lista_codigo=_lista_codigo)
 
-
