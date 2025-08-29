@@ -1,4 +1,4 @@
-def deixar_nome_ate_60_caracteres(nome_produto, codigo_produto, marca) -> str:
+def deixar_nome_ate_60_caracteres(nome_produto: str, codigo_produto: str, marca: str) -> str:
 
     palavras_para_substituir = {
         "DIANTEIRO": "DIANT",
@@ -15,15 +15,15 @@ def deixar_nome_ate_60_caracteres(nome_produto, codigo_produto, marca) -> str:
         "  ": " "
     }
 
-    def acertar_nomes(x) -> str:
+    def acertar_nomes(x: str) -> str:
         return str(x).upper().replace("  ", " ")
     
-    def verificar_tamanho(nome) -> bool:
+    def verificar_tamanho(nome: str) -> bool:
         return True if len(nome) < 61 else False
     
 
 
-    def retorno_final(x) -> str:
+    def retorno_final(x: str) -> str:
         return x.title().rstrip()
     
     nome_produto = acertar_nomes(nome_produto)
@@ -56,13 +56,9 @@ def deixar_nome_ate_60_caracteres(nome_produto, codigo_produto, marca) -> str:
 
     return retorno_final(nome_novo)
 
-
-
-
-def funcao_geral(lista_nome, lista_marca, lista_codigo) -> list:
+def funcao_geral(lista_nome: list, lista_marca: list, lista_codigo: list) -> list:
 
     retorno = []
-
     for v_nome, v_marca, v_codigo in zip(lista_nome, lista_marca, lista_codigo):
         data = deixar_nome_ate_60_caracteres(nome_produto=v_nome, codigo_produto=v_codigo, marca=v_marca)
         if data == 'None':
@@ -76,4 +72,8 @@ _lista_marca = [x[0] for x in xl("H2:H1000").values]
 _lista_codigo = [x[0] for x in xl("G2:G1000").values]
 
 funcao_geral(lista_nome=_lista_nome, lista_marca=_lista_marca, lista_codigo=_lista_codigo)
+
+
+
+
 
