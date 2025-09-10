@@ -18,11 +18,11 @@ def baixar_imagem(url, local_salvar):
 
 
 
-planilha = pd.read_excel(r'Links.xlsx')
+planilha = pd.read_excel(rf'C:\Users\joab.alves\Desktop\automacoes_atacadao\baixar_imagens\Links.xlsx')
 lista_links = planilha['link']
 lista_nomes = planilha['nome']
 
-os.chdir('imagens')
+os.chdir(rf'C:\Users\joab.alves\Desktop\automacoes_atacadao\baixar_imagens\imagens')
 lista_erros = []
 lista_imagens_baixadas = os.listdir()
 
