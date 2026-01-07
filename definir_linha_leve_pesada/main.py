@@ -28,20 +28,6 @@ def verificadora(lista_veiculos, nome):
     return 'LEVE'
 
 
-def main():
-    total = len(lista_nomes_anuncios)
-    contagem = 1
-    for nome in lista_nomes_anuncios:
-        lista_final.append(verificadora(lista_de_veiculos, nome))
-        os.system('cls')
-        print(f'Feito: {contagem}/{total}')
-        contagem+=1
-
-    exel_alterar['Linha'] = lista_final
-    slv = exel_alterar.to_excel(rf'definir_linha_leve_pesada\Anúncios Linha Pesada.xlsx', index=False)
-
-
-main()
 
 
 
