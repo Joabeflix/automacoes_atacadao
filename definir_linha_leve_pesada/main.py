@@ -27,7 +27,15 @@ def verificadora(lista_veiculos, nome):
 
     return 'LEVE'
 
+def main():
+    for nome in lista_nomes_anuncios:
+        lista_final.append(verificadora(lista_de_veiculos, nome))        
+    
+    exel_alterar['Linha'] = lista_final
+    slv = exel_alterar.to_excel('teste.xlsx', index=False)
 
+
+main()
 
 
 

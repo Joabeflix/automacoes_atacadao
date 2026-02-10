@@ -21,10 +21,10 @@ def deixar_nome_ate_60_caracteres(nome_produto: str, codigo_produto: str, marca:
     def verificar_tamanho(nome: str) -> bool:
         return True if len(nome) < 61 else False
     
-
-
     def retorno_final(x: str) -> str:
         return x.title().rstrip()
+
+
     
     nome_produto = acertar_nomes(nome_produto)
     codigo_produto = acertar_nomes(codigo_produto)
