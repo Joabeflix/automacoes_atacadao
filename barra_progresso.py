@@ -7,7 +7,7 @@ def simulacao(qtd, obj_barra):
     obj_barra.fim_barra()
 
 class BarraProgresso:
-    def __init__(self, idc: int, texto: str = None):
+    def __init__(self, idc: int, texto: str | None = None):
         self.idc=idc
         self.porcentagem = 0
         self.texto=texto
@@ -31,12 +31,3 @@ simular = 100
 
 br = BarraProgresso(idc=simular)
 simulacao(simular, br)
-
-
-
-
-
-
-
-
-

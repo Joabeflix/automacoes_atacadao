@@ -23,3 +23,10 @@ ws["A5"] = "PERIODO: 01/01/2024 ATÉ 31/08/2024"
 ws["D5"] = "CARTÃO DE CRÉDITO"
 
 wb.save(arquivo)
+
+
+
+
+
+
+

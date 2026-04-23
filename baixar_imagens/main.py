@@ -41,4 +41,6 @@ if lista_erros:
     for err in lista_erros:
         print(f'{err}')
 
-   
+
+
+

@@ -13,6 +13,3 @@ Function gerar_link(marca As String, codigo As String) As String
                 padrao_link & marca_codigo & "-3.jpg"
 
 End Function
-
-
-
