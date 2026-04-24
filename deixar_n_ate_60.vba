@@ -13,7 +13,7 @@ Function acertar_texto(x As String) As String
 End Function
 
 Function verificar_tamanho(x As String) As Boolean
-    verificar_tamanho = IIf(Len(x) > 60, True, False)
+    verificar_tamanho = If(Len(x) > 60, True, False)
 End Function
 
 Function substituir_e_acertar(nome As String, subs As String, por As String)

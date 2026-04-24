@@ -29,7 +29,6 @@ for index, row in df.iterrows():
     lista_de_dados.append({int(valor_coluna_a): linha})
 
 
-
 lista_sem_zeros = []
 
 
